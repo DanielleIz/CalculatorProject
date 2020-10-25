@@ -10,6 +10,10 @@ public class CalculatorEngine {
         
     }
 
+    public String getDisplayContent() {
+        return null;
+    }
+    
 	public void keyPressed(Key key) {
         logger.info("Key pressed: "+key.display);
 	}

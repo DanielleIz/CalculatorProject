@@ -10,9 +10,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CalculatorUI {
+    private static final Logger logger = LogManager.getLogger();
     private final CalculatorEngine engine;
+    private TextField displayTextField;
+
     // Useful tutorial on JavaFX: https://docs.oracle.com/javafx/2/get_started/jfxpub-get_started.htm
     public CalculatorUI(CalculatorEngine engine) {
         this.engine = engine;
@@ -22,8 +27,21 @@ public class CalculatorUI {
         Button button = new Button(key.display);
         button.setOnAction(evt -> {
             engine.keyPressed(key);
+            updateDisplay();
         });
         return button;
+    }
+
+    private void updateDisplay() {
+        if (displayTextField == null) {
+            logger.error("no display text field");
+        }
+        String content = engine.getDisplayContent();
+        if (content == null) {
+            content = "ERR!";
+        }
+        logger.info("content: "+content);
+        displayTextField.setText(content);
     }
 
     public void populateStage(Stage stage) {
@@ -37,7 +55,8 @@ public class CalculatorUI {
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 4, 1);
 
-        TextField displayTextField = new TextField();
+        this.displayTextField = new TextField();
+        updateDisplay();
         grid.add(displayTextField, 0, 1, 4, 1);
 
         Button clearButton = buttonForKey(Key.CLEAR);
