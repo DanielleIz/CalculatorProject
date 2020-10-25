@@ -13,14 +13,16 @@ import javafx.stage.Stage;
 
 public class CalculatorUI {
     private final CalculatorEngine engine;
-    
+    // Useful tutorial on JavaFX: https://docs.oracle.com/javafx/2/get_started/jfxpub-get_started.htm
     public CalculatorUI(CalculatorEngine engine) {
         this.engine = engine;
     }
 
-    private Button buttonForKey(Key key) {
+    private Button buttonForKey(final Key key) {
         Button button = new Button(key.display);
-
+        button.setOnAction(evt -> {
+            engine.keyPressed(key);
+        });
         return button;
     }
 
