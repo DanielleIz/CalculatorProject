@@ -25,6 +25,6 @@ public class CalculatorEngine {
     }
 
 	public void keyPressed(Key key) {
-        logger.info("Key pressed: "+key.display);
+        logger.debug("Key pressed: "+key.display);
 	}
 }

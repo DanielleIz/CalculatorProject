@@ -40,7 +40,6 @@ public class CalculatorUI {
         if (content == null) {
             content = "ERR!";
         }
-        logger.info("content: "+content);
         displayTextField.setText(content);
     }
 
