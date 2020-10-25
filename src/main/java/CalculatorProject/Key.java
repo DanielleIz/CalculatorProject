@@ -17,7 +17,8 @@ public enum Key {
     DIVIDE(13, KeyType.OPERATOR, "/"),
     EQUALS(14, KeyType.OPERATOR, "="),
     CLEAR(15, KeyType.CONTROL, "CLR"),
-    NEGATE(16, KeyType.CONTROL, "+/-");
+    ENTER(16, KeyType.CONTROL, "Enter"),
+    NEGATE(17, KeyType.CONTROL, "+/-");
 
     public final int code;
     public final KeyType keyType;
@@ -27,5 +28,10 @@ public enum Key {
         this.code = code;
         this.keyType = keyType;
         this.display = display;
+    }
+
+    @Override
+    public String toString() {
+        return "Key("+display+")";
     }
 }
