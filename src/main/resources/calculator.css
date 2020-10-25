@@ -1,0 +1,4 @@
+.root {
+    -fx-background-image: url("bird.jpg");
+    background-image: url("bird.jpg");
+}

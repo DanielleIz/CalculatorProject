@@ -70,6 +70,7 @@ public class CalculatorUI {
         }
 
         Scene scene = new Scene(grid, 300, 275);
+        scene.getStylesheets().add(CalculatorUI.class.getResource("/calculator.css").toExternalForm());
         stage.setScene(scene);
 
     }
