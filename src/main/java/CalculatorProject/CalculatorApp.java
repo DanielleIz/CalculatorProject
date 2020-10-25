@@ -3,12 +3,11 @@
  */
 package CalculatorProject;
 
-public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
+public class CalculatorApp {
 
+    
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        CalculatorEngine engine = new CalculatorEngine();
+        CalculatorUI ui = new CalculatorUI(engine);
     }
 }
