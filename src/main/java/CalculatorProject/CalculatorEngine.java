@@ -4,16 +4,26 @@ import org.apache.logging.log4j.Logger;
 
 public class CalculatorEngine {
     private static final Logger logger = LogManager.getLogger();
+    private double currentValue;
+    private boolean isError;
 
-    // TODO: implement these methods
-    public void init() {
-        
+    public CalculatorEngine() {
+        clear();
+    }
+
+    public void clear() {
+        currentValue = 0.0;
+        isError = false;
     }
 
     public String getDisplayContent() {
-        return null;
+        if (isError) {
+            return "ERROR";
+        } else {
+            return Double.toString(currentValue);
+        }
     }
-    
+
 	public void keyPressed(Key key) {
         logger.info("Key pressed: "+key.display);
 	}

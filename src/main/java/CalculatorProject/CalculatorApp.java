@@ -11,10 +11,7 @@ public class CalculatorApp extends Application {
 
     @Override
     public void start(Stage stage) {
-        logger.error("HEY YA");
-        logger.warn("Woo hoo");
-        logger.info("waht");
-        logger.debug("no");
+        logger.info("Starting");
         CalculatorEngine engine = new CalculatorEngine();
         CalculatorUI ui = new CalculatorUI(engine);
         ui.populateStage(stage);
