@@ -4,6 +4,12 @@ plugins {
      id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(14)
+    }
+}
+
 repositories {
     jcenter()
 }
