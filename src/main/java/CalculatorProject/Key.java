@@ -16,11 +16,13 @@ public enum Key {
     TIMES(12, KeyType.OPERATOR, "*"),
     DIVIDE(13, KeyType.OPERATOR, "/"),
     EQUALS(14, KeyType.OPERATOR, "="),
-    CLEAR(15, KeyType.CONTROL, "CLR");
+    CLEAR(15, KeyType.CONTROL, "CLR"),
+    NEGATE(16, KeyType.CONTROL, "+/-");
 
     public final int code;
     public final KeyType keyType;
     public final String display;
+    
     Key(int code, KeyType keyType, String display) {
         this.code = code;
         this.keyType = keyType;
