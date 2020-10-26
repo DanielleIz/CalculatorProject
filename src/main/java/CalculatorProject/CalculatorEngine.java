@@ -20,9 +20,7 @@ public class CalculatorEngine {
     }
 
     public void clear() {
-        currentValue = 0L;
-        stack.clear();
-        isError = false;
+        // TODO: when we clear the state of the calculator, what needs to happen?
     }
 
     public Iterator<Long> iterateStack() {
@@ -40,14 +38,13 @@ public class CalculatorEngine {
     private void controlKeyPressed(Key key) {
         switch (key) {
             case CLEAR:
-                clear();
+                // TODO: What should we do when the user hits the CLR button?
                 break;
             case ENTER:
-                stack.push(currentValue);
-                currentValue = 0L;
+                // TODO: What should we do when the user hits the Enter button?
                 break;
             case NEGATE:
-                currentValue = -currentValue;
+                // TODO: What should we do when the user hits the +/- button?
                 break;
             default:
                 logger.error("unexpected control key: "+key);
@@ -65,20 +62,16 @@ public class CalculatorEngine {
         long operand = stack.pop();
         switch (key) {
             case PLUS:
-                currentValue = operand + currentValue;
+                // TODO: What should we do when the user hits +?
                 break;
             case MINUS:
-                currentValue = operand - currentValue;
+                // TODO: What should we do when the user hits -?
                 break;
             case TIMES:
-                currentValue = operand * currentValue;
+                // TODO: What should we do when the user hits *?
                 break;
             case DIVIDE:
-                if (currentValue == 0) {
-                    isError = true;
-                } else {
-                    currentValue = operand / currentValue;
-                }
+                // TODO: What should we do when the user hits /?
                 break;
             default:
                 logger.error("unexpected operator key: "+key);
@@ -88,13 +81,7 @@ public class CalculatorEngine {
         logger.debug("Key pressed: " + key.display);
         switch (key.keyType) {
             case DIGIT:
-                long nextValue = 10L * currentValue + (long) key.code;
-                if (Long.signum(currentValue) != 0 && Long.signum(nextValue) != Long.signum(currentValue)) {
-                    logger.info("Overflow, no more digits accepted");
-                } else {
-                    currentValue = nextValue;
-                }
-                logger.info("currentValue: "+currentValue);
+                // TODO: What should we do when the user hits a digit key?
                 break;
             case OPERATOR:
                 operatorKeyPressed(key);
