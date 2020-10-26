@@ -1,6 +1,7 @@
 package CalculatorProject;
 
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +23,10 @@ public class CalculatorEngine {
         currentValue = 0L;
         stack.clear();
         isError = false;
+    }
+
+    public Iterator<Long> iterateStack() {
+        return stack.iterator();
     }
 
     public String getDisplayContent() {

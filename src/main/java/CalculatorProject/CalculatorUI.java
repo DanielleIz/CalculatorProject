@@ -6,10 +6,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.util.Iterator;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,8 +21,11 @@ public class CalculatorUI {
     private static final Logger logger = LogManager.getLogger();
     private final CalculatorEngine engine;
     private TextField displayTextField;
+    private VBox displayStack;
 
     // Useful tutorial on JavaFX: https://docs.oracle.com/javafx/2/get_started/jfxpub-get_started.htm
+    // More info on JavaFX: https://fxdocs.github.io/docs/book.pdf
+    // And even more: https://docs.oracle.com/javase/8/javase-clienttechnologies.htm
     public CalculatorUI(CalculatorEngine engine) {
         this.engine = engine;
     }
@@ -33,14 +40,25 @@ public class CalculatorUI {
     }
 
     private void updateDisplay() {
-        if (displayTextField == null) {
-            logger.error("no display text field");
-        }
         String content = engine.getDisplayContent();
         if (content == null) {
             content = "ERR!";
         }
-        displayTextField.setText(content);
+        if (displayTextField == null) {
+            logger.error("no display text field");
+        } else {
+            displayTextField.setText(content);
+        }
+        if (displayStack == null) {
+            logger.error("no stack display");
+        } else {
+            displayStack.getChildren().clear();
+            displayStack.getChildren().add(new Text("Stack"));
+            Iterator<Long> stackIterator = engine.iterateStack();
+            while (stackIterator.hasNext()) {
+                displayStack.getChildren().add(new Text(stackIterator.next().toString()));
+            }
+        }
     }
 
     public void populateStage(Stage stage) {
@@ -77,6 +95,10 @@ public class CalculatorUI {
         grid.add(negateButton, 1, 6);
         Button enterButton = buttonForKey(Key.ENTER);
         grid.add(enterButton, 3, 6);
+        this.displayStack = new VBox();
+        displayStack.setId("displayStack");
+        displayStack.getChildren().add(new Text("Stack"));
+        grid.add(displayStack, 4, 0, 1, 8);
         Scene scene = new Scene(grid, 300, 275);
         scene.getStylesheets().add(CalculatorUI.class.getResource("/calculator.css").toExternalForm());
         stage.setScene(scene);
