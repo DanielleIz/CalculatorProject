@@ -2,11 +2,7 @@
     -fx-background-image: url("bird.jpg");
 }
 
-.button {
-    -fx-width: 42;
-}
-
 #displayStack {
     -fx-background-color: white;
-    -fx-padding: 20;
+    -fx-padding: 12;
 }
