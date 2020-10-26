@@ -46,6 +46,9 @@ public class CalculatorEngine {
                 stack.push(currentValue);
                 currentValue = 0L;
                 break;
+            case NEGATE:
+                currentValue = -currentValue;
+                break;
             default:
                 logger.error("unexpected control key: "+key);
         }
