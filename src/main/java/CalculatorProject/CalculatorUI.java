@@ -67,7 +67,16 @@ public class CalculatorUI {
                 grid.add(numButton, col, row+3);
             }
         }
-
+        for (int row = 0; row < 4; ++row) {
+            Button operatorButton = buttonForKey(KeyMap.keyForCode(Key.PLUS.code + row));
+            grid.add(operatorButton, 3, row + 3);
+        }
+        Button zeroButton = buttonForKey(Key.NUM_0);
+        grid.add(zeroButton, 0, 6);
+        Button negateButton = buttonForKey(Key.NEGATE);
+        grid.add(negateButton, 1, 6);
+        Button enterButton = buttonForKey(Key.ENTER);
+        grid.add(enterButton, 3, 6);
         Scene scene = new Scene(grid, 300, 275);
         scene.getStylesheets().add(CalculatorUI.class.getResource("/calculator.css").toExternalForm());
         stage.setScene(scene);

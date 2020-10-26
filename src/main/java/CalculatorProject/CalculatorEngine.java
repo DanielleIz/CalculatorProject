@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 public class CalculatorEngine {
     private static final Logger logger = LogManager.getLogger();
     private long currentValue;
+
     private Deque<Long> stack;
     private boolean isError;
 
@@ -46,9 +47,33 @@ public class CalculatorEngine {
     }
 
     private void operatorKeyPressed(Key key) {
+        // Operators need a value on the stack to apply to the currentValue
+        if (stack.isEmpty()) {
+            logger.error("Attempting to pop empty stack");
+            isError = true;
+            currentValue = 0;
+            return;
+        }
+        long operand = stack.pop();
         switch (key) {
+            case PLUS:
+                currentValue = operand + currentValue;
+                break;
+            case MINUS:
+                currentValue = operand - currentValue;
+                break;
+            case TIMES:
+                currentValue = operand * currentValue;
+                break;
+            case DIVIDE:
+                if (currentValue == 0) {
+                    isError = true;
+                } else {
+                    currentValue = operand / currentValue;
+                }
+                break;
             default:
-            logger.error("unexpected operator key: "+key);
+                logger.error("unexpected operator key: "+key);
         }
     }
     public void keyPressed(Key key) {
