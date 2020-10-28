@@ -94,7 +94,7 @@ public class CalculatorUI {
         Button negateButton = buttonForKey(Key.NEGATE);
         grid.add(negateButton, 1, 6);
         Button enterButton = buttonForKey(Key.ENTER);
-        grid.add(enterButton, 3, 6);
+        grid.add(enterButton, 3, 7);
         this.displayStack = new VBox();
         displayStack.setId("displayStack");
         displayStack.getChildren().add(new Text("Stack"));
